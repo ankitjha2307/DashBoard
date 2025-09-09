@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./Components/Header";
 import Login from "./Pages/Login";
 import Dashboard from "./Pages/Dashboard";
-import Footer from "./Components/Footer";
+import About from "./Pages/About";
 
 function App() {
   return (
@@ -24,6 +24,15 @@ function App() {
             <>
               <Header />
               <Dashboard />
+            </>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <>
+              <Header />
+              <About />
             </>
           }
         />

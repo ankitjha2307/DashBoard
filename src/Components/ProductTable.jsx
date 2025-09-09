@@ -43,12 +43,12 @@ export default function ProductTable({ filteredData }) {
 
               return (
                 <tr key={idx} className={idx % 2 === 0 ? "bg-gray-100" : ""}>
-                  {/* Product, Brand, Category shown as text */}
+                  {/* Product, Brand, Category */}
                   <td className="p-2 text-center font-medium">{row.Product}</td>
                   <td className="p-2 text-center">{row.Brand}</td>
                   <td className="p-2 text-center">{row.Category}</td>
 
-                  {/* Compliance fields shown as ✅/❌ */}
+                  {/* Compliance fields */}
                   {fields.map((f, i) => (
                     <td key={i} className="p-2 text-center">
                       {row[f] ? (
@@ -59,7 +59,7 @@ export default function ProductTable({ filteredData }) {
                     </td>
                   ))}
 
-                  {/* Final compliance check */}
+                  {/* Overall Compliance */}
                   <td className="p-2 text-center">
                     {isCompliant ? (
                       <CheckCircleIcon className="w-6 h-6 text-green-600 mx-auto" />

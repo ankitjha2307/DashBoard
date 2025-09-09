@@ -1,41 +1,51 @@
-import { saveAs } from "file-saver";
-
 export default function FilterExport({
   filterCategory,
   setFilterCategory,
   filteredData,
 }) {
-  const exportCSV = () => {
-    let csv =
-      "Product,Brand,Category,MRP Present,Country of Origin,Net Quantity,Compliance Passed\n";
-    filteredData.forEach((p) => {
-      csv += `${p.Product},${p.Brand},${p.Category},${
-        p["MRP Present"] ? "Yes" : "No"
-      },${p["Country of Origin"] ? "Yes" : "No"},${
-        p["Net Quantity"] ? "Yes" : "No"
-      },${p["Compliance Passed"] ? "Yes" : "No"}\n`;
-    });
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    saveAs(blob, "product_compliance_report.csv");
+  const categories = ["All", ...new Set(filteredData.map((p) => p.Category))];
+
+  const exportToCSV = () => {
+    if (!filteredData || filteredData.length === 0) return;
+
+    const headers = Object.keys(filteredData[0]);
+
+    const csvRows = [
+      headers.join(","),
+      ...filteredData.map((row) =>
+        headers.map((field) => `"${row[field]}"`).join(",")
+      ),
+    ];
+
+    const csvString = csvRows.join("\n");
+
+    const blob = new Blob([csvString], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "compliance_data.csv";
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
-    <div className="flex flex-wrap justify-between mb-4 gap-4">
+    <div className="bg-white p-4 rounded shadow mb-6 flex justify-between items-center">
       <select
         value={filterCategory}
         onChange={(e) => setFilterCategory(e.target.value)}
-        className="border p-2 rounded"
+        className="p-2 border rounded"
       >
-        <option value="All">All Categories</option>
-        {[...new Set(filteredData.map((p) => p.Category))].map((c, i) => (
-          <option key={i} value={c}>
+        {categories.map((c, idx) => (
+          <option key={idx} value={c}>
             {c}
           </option>
         ))}
       </select>
+
       <button
-        onClick={exportCSV}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        onClick={exportToCSV}
+        className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition"
       >
         Export CSV
       </button>
