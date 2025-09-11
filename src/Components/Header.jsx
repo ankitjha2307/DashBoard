@@ -17,7 +17,7 @@ export default function Header() {
       <div className="flex items-center space-x-2">
         <ShieldCheck className="text-blue-600 w-8 h-8" />
         <span className="text-2xl font-extrabold text-gray-800 tracking-wide">
-          Bharat<span className="text-blue-600">Check</span>
+          Audit<span className="text-blue-600">X</span>
         </span>
       </div>
 

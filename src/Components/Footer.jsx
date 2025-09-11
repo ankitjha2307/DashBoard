@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Left side - Branding */}
         <div className="flex items-center space-x-2">
           <span className="text-lg font-bold text-gray-800">
-            Bharat<span className="text-blue-600">Check</span>
+            Audit<span className="text-blue-600">X</span>
           </span>
           <span>© {new Date().getFullYear()} Smart India Hackathon</span>
         </div>

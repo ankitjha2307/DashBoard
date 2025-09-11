@@ -29,7 +29,7 @@ export default function Login() {
         <div className="bg-white rounded-2xl shadow-lg p-10 w-96 border border-gray-200">
           {/* Logo / Title */}
           <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-2">
-            Bharat<span className="text-blue-600">Check</span>
+            Audit<span className="text-blue-600">X</span>
           </h2>
           <p className="text-center text-gray-500 mb-8 text-sm">
             Secure Compliance Dashboard
